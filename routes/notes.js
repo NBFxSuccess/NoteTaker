@@ -26,12 +26,12 @@ tips.get('/:id', (req, res) => {
 
 // DELETE Route for a specific tip
 tips.delete('/:id', (req, res) => {
-  const tipId = req.params.tip_id;
-  readFromFile('./db/tips.json')
+  const id = req.params.id;
+  readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
       // Make a new array of all tips except the one with the ID provided in the URL
-      const result = json.filter((tip) => note.id !== id);
+      const result = json.filter((note) => note.id !== id);
 
       // Save that array to the filesystem
       writeToFile('./db/db.json', result);
