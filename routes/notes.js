@@ -7,12 +7,12 @@ const {
 } = require('../helpers/fsUtils');
 
 // GET Route for retrieving all the notes
-tips.get('/', (req, res) => {
+notes.get('/', (req, res) => {
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 // GET Route for a specific tip
-tips.get('/:id', (req, res) => {
+notes.get('/:id', (req, res) => {
   const id = req.params.id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
@@ -24,13 +24,13 @@ tips.get('/:id', (req, res) => {
     });
 });
 
-// DELETE Route for a specific tip
-tips.delete('/:id', (req, res) => {
+// DELETE Route for a specific notes
+notes.delete('/:id', (req, res) => {
   const id = req.params.id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      // Make a new array of all tips except the one with the ID provided in the URL
+      // Make a new array of all notes except the one with the ID provided in the URL
       const result = json.filter((note) => note.id !== id);
 
       // Save that array to the filesystem
@@ -42,7 +42,7 @@ tips.delete('/:id', (req, res) => {
 });
 
 // POST Route for a new UX/UI tip
-tips.post('/', (req, res) => {
+notes.post('/', (req, res) => {
   console.log(req.body);
 
   const { title, text } = req.body;
