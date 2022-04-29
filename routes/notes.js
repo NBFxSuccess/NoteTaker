@@ -13,7 +13,7 @@ tips.get('/', (req, res) => {
 
 // GET Route for a specific tip
 tips.get('/:id', (req, res) => {
-  const tipId = req.params.id;
+  const id = req.params.id;
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
@@ -25,7 +25,7 @@ tips.get('/:id', (req, res) => {
 });
 
 // DELETE Route for a specific tip
-tips.delete('/:tip_id', (req, res) => {
+tips.delete('/:id', (req, res) => {
   const tipId = req.params.tip_id;
   readFromFile('./db/tips.json')
     .then((data) => JSON.parse(data))
